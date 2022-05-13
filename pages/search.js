@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router';
+import ImageResults from '../Components/ImageResults';
 import SearchHeader from '../Components/SearchHeader'
 import SearchResults from '../Components/SearchResults';
 import Response from '../Response'
@@ -12,8 +13,11 @@ const search = ({results}) => {
         <Head>
             <title>{router.query.term} - Search page</title>
         </Head>
-            <SearchHeader />
-            <SearchResults results={results}/>
+        <SearchHeader />
+        {router.query.searchType === "image"?(
+          <ImageResults results={results}/>
+        ):<SearchResults results={results}/>
+        }     
     </div>
   )
 }
@@ -22,7 +26,7 @@ const search = ({results}) => {
 
 export async function getServerSideProps(context) {
   const startIndex = context.query.start || "1"
-  const mockData = false
+  const mockData = true
   const data = mockData ? Response : await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${context.query.term}${context.query.searchType && "&searchType=image"}$start=${startIndex}`
   ).then((response) => response.json());
 
