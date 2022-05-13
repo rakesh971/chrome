@@ -5,7 +5,7 @@ import SearchHeader from '../Components/SearchHeader'
 import SearchResults from '../Components/SearchResults';
 import Response from '../Response'
 
-const search = ({results}) => {
+const Search = ({results}) => {
   console.dir(results)
   const router = useRouter()
   return (
@@ -39,4 +39,4 @@ export async function getServerSideProps(context) {
 
 
 
-export default search
+export default Search
