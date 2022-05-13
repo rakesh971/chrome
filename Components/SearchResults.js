@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router';
 import Parser from 'html-react-parser'
+import Pagination from './Pagination';
 const SearchResults = ({results}) => {
    
   return (
@@ -19,8 +20,9 @@ const SearchResults = ({results}) => {
                 </div>
                 <p className="text-gray-600">{Parser(result.htmlSnippet)}</p>
             </div>
-        
+           
         ))}
+         <Pagination/>
     </div>
   )
 }
