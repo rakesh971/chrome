@@ -11,7 +11,7 @@ const search = ({results}) => {
   return (
     <div>
         <Head>
-            <title>{router.query.term} - Search page</title>
+            <title>{router.query.term} - Search pages </title>
         </Head>
         <SearchHeader />
         {router.query.searchType === "image"?(
