@@ -5,6 +5,7 @@ import SearchResults from '../Components/SearchResults';
 import Response from '../Response';
 
 const search = ({results}) => {
+  console.dir(results)
   const router = useRouter()
   return (
     <div>
@@ -21,7 +22,7 @@ const search = ({results}) => {
 
 export async function getServerSideProps(context) {
   const mockData = true
-  const data =mockData ? Response : await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${context.query.term}${context.query.searchType && "&searchType=image"}`
+  const data = mockData ? Response : await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${context.query.term}${context.query.searchType && "&searchType=image"}`
   ).then((response) => response.json());
 
   return{
