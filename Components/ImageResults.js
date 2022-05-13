@@ -5,7 +5,7 @@ const ImageResults = ({results}) => {
   return (
     <div className="mt-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-3 space-x-4">
-            {results.items.map((result)=>(
+            {results.items?.map((result)=>(
                 <div key={result.link} className='mb-8'>
                     <div className='group'>
                         <a href={result.image. contextLink}>

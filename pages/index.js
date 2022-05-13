@@ -5,6 +5,7 @@ import { SearchIcon, MicrophoneIcon } from "@heroicons/react/solid";
 import Footer from '../Components/Footer';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
+import { FetchEvent } from 'next/dist/server/web/spec-compliant/fetch-event';
 
 export default function Home() {
   const router = useRouter()
@@ -15,6 +16,15 @@ export default function Home() {
     if(!term.trim())return;
     router.push(`/search?term=${term.trim()}`)
   }
+  async function randomSearch(event){
+    event.preventDefault();
+    const randomTerm = await fetch("https://random-word-api.herokuapp.com/word?number=1")
+    .then((response) => response.json());
+    if(!randomTerm)return;
+    router.push(`/search?term=${randomTerm}`)
+  }
+
+  
   return (
     <div >
       <Head>
@@ -45,7 +55,7 @@ export default function Home() {
             <button className="btn" onClick={search}>
               Google Search
             </button>
-            <button className="btn">
+            <button className="btn" onClick={randomSearch}>
               I&apos;m Feeling Lucky
             </button>
           </div>
